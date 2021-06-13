@@ -1,0 +1,8 @@
+Один из вариантов решения — подсчитать количество тегов на каждом товаре 
+и проверить для каких товаров количество будет равно количеству тегов.
+
+SELECT g.* 
+FROM goods g 
+LEFT JOIN goods_tags  gt ON g.id=gt.goods_id 
+GROUP BY gt.goods_id 
+HAVING count(gt.tag_id) = (SELECT count(id) FROM tags);
